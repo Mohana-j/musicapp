@@ -6,8 +6,8 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
-  Appearance,
   Modal,
+  ScrollView,
 } from "react-native";
 import styles from "./AlbumStyles";
 
@@ -46,10 +46,11 @@ const Alb = ({ darkMode }) => {
   return (
     <View style={[styles.container, darkMode ? styles.darkBackground : styles.lightBackground]}>
       <Text style={[styles.header, { color: darkMode ? "#fff" : "#000" }]}>Top Albums</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={true}>
       <FlatList
         data={albums}
         horizontal
-        showsHorizontalScrollIndicator={true}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         decelerationRate="fast"
         snapToAlignment="start"
@@ -68,6 +69,7 @@ const Alb = ({ darkMode }) => {
         )}
         style={{ flexGrow: 0 }}
       />
+       
 
       {/* Custom Alert Modal */}
       <Modal
@@ -105,6 +107,7 @@ const Alb = ({ darkMode }) => {
           </View>
         </View>
       </Modal>
+      </ScrollView>
     </View>
   );
 };
